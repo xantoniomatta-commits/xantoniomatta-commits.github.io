@@ -28,6 +28,7 @@
         body {
             font-family: 'Arial', sans-serif;
             background: #0a0a1a;
+            transition: background-color 0.8s ease;
             color: white;
             overflow-x: hidden;
         }
@@ -227,11 +228,6 @@
             position: relative;
             scroll-snap-align: start;
         }
-        
-        .project-section:nth-child(2) { background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2a 100%); }
-        .project-section:nth-child(3) { background: linear-gradient(135deg, #0a0a1a 0%, #2a0a2a 100%); }
-        .project-section:nth-child(4) { background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2a 100%); }
-        .project-section:nth-child(5) { background: linear-gradient(135deg, #0a0a1a 0%, #0a1a2a 100%); }
         
         .project-container {
             max-width: 1000px;
@@ -478,7 +474,7 @@
     </a>
 
     <!-- PROJECT 1: moonlight (2024) -->
-    <section class="project-section">
+    <section class="project-section moonlight-section">
         <div class="project-container">
             <div class="project-header">
                 <h2>moonlight</h2>
@@ -535,8 +531,8 @@
         </div>
         <div class="scroll-indicator">SCROLL ↓</div>
     </section>
-    <!-- PROJECT 2: MINE (2025) -->
-    <section class="project-section">
+            <!-- PROJECT 2: MINE (2025) -->
+    <section class="project-section mine-section">
         <div class="project-container">
             <div class="project-header">
                 <h2>MINE</h2>
@@ -565,17 +561,17 @@
     </section>
 
         <!-- PROJECT 3: Trace the Line (2025 WIP) -->
-<section class="project-section">
-    <div class="project-container">
-        <div class="project-header">
-            <h2>Trace the Line</h2>
-            <div class="project-subheader">
-                <span class="year-badge">Early 2025</span>
-                <span class="role-badge">Dark/Synthwave/Electronic/Indie</span>
-                <span class="role-badge">Producer</span>
-                <span class="role-badge">Composer</span>
+    <section class="project-section trace-section">
+        <div class="project-container">
+            <div class="project-header">
+                <h2>Trace the Line</h2>
+                <div class="project-subheader">
+                    <span class="year-badge">Early 2025</span>
+                    <span class="role-badge">Dark/Synthwave/Electronic/Indie</span>
+                    <span class="role-badge">Producer</span>
+                    <span class="role-badge">Composer</span>
+                </div>
             </div>
-        </div>
         
                 <!-- Google Drive Audio Player - WORKS! -->
                 <div class="media-container" style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 20px;">
@@ -602,18 +598,18 @@
                 </div>
             </div>
         </section>
-<!-- PROJECT 4: Dynasties Theme (2020) -->
-<section class="project-section">
-    <div class="project-container">
-        <div class="project-header">
-            <h2>Dynasties Theme</h2>
-            <div class="project-subheader">
-                <span class="year-badge">2020</span>
-                <span class="role-badge">Epic/Orchestral/Indie</span>
-                <span class="role-badge">Producer</span>
-                <span class="role-badge">Composer</span>
-            </div>
-        </div>
+        <!-- PROJECT 4: Dynasties Theme (2020) -->
+        <section class="project-section dynasties-section">
+            <div class="project-container">
+                <div class="project-header">
+                    <h2>Dynasties Theme</h2>
+                    <div class="project-subheader">
+                        <span class="year-badge">2020</span>
+                        <span class="role-badge">Epic/Orchestral/Indie</span>
+                        <span class="role-badge">Producer</span>
+                        <span class="role-badge">Composer</span>
+                    </div>
+                </div>
         
         <!-- YouTube Player -->
         <div class="media-container">
@@ -641,28 +637,61 @@
     </section>
     <!-- Floating particles script -->
     <script>
-        (function() {
-            const container = document.body;
-            const particleCount = 40;
+                (function() {
+                    const container = document.body;
+                    const particleCount = 40;
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'music-particle';
+                    for (let i = 0; i < particleCount; i++) {
+                        const particle = document.createElement('div');
+                        particle.className = 'music-particle';
                 
-                const size = 2 + Math.random() * 6;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
+                        const size = 2 + Math.random() * 6;
+                        particle.style.width = size + 'px';
+                        particle.style.height = size + 'px';
                 
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
+                        particle.style.left = Math.random() * 100 + '%';
+                        particle.style.top = Math.random() * 100 + '%';
                 
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particle.style.animationDuration = 5 + Math.random() * 8 + 's';
+                        particle.style.animationDelay = Math.random() * 5 + 's';
+                        particle.style.animationDuration = 5 + Math.random() * 8 + 's';
                 
-                container.appendChild(particle);
-            }
-        })();
-    </script>
-
+                        container.appendChild(particle);
+                    }
+                })();
+            </script>
+            <script>
+            // Smooth background transition between sections
+            const sections = document.querySelectorAll('.project-section');
+            const colors = [
+                '#120e22', // moonlight - darker
+                '#090918', // MINE - shifted further in shade
+                '#1a0f2a', // Trace the Line - neon pinkish-purple
+                '#040310'  // Dynasties - balanced
+            ];
+    
+            window.addEventListener('scroll', function() {
+                const scrollY = window.scrollY;
+                const windowHeight = window.innerHeight;
+        
+                // Find which section is most visible
+                let maxVisibility = 0;
+                let targetColor = colors[0];
+        
+                sections.forEach((section, index) => {
+                    const rect = section.getBoundingClientRect();
+                    const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+                    const visibility = Math.max(0, visibleHeight / windowHeight);
+            
+                    if (visibility > maxVisibility) {
+                        maxVisibility = visibility;
+                        targetColor = colors[index];
+                    }
+                });
+        
+                // Smooth transition - dark and moody
+                document.body.style.backgroundColor = targetColor;
+                document.body.style.transition = 'background-color 0.8s ease';
+            });
+        </script>
 </body>
 </html>
