@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Antonio Matta - Music Producer & Guitarist</title>
+    <!-- Add Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Bitcount+Prop+Double+Ink&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a1a;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        /* WEBSITE-WIDE PARTICLE BACKGROUND */
+        #particle-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Base particle style */
+        .bg-particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            will-change: transform, opacity, filter;
+        }
+
+        /* Different types of particles */
+        .bg-particle.type-1 {
+            background: rgba(180, 100, 255, 0.15);
+            box-shadow: 0 0 15px rgba(180, 100, 255, 0.2);
+        }
+
+        .bg-particle.type-2 {
+            background: rgba(120, 180, 255, 0.1);
+            box-shadow: 0 0 20px rgba(120, 180, 255, 0.15);
+            filter: blur(1px);
+        }
+
+        .bg-particle.type-3 {
+            background: rgba(220, 140, 255, 0.12);
+            box-shadow: 0 0 25px rgba(220, 140, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .bg-particle.type-4 {
+            background: transparent;
+            border: 1px solid rgba(180, 100, 255, 0.2);
+            box-shadow: 0 0 10px rgba(180, 100, 255, 0.1);
+        }
+
+        .bg-particle.twinkle {
+            animation: twinkle 4s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.1; transform: scale(0.8); }
+            50% { opacity: 0.4; transform: scale(1.2); }
+            100% { opacity: 0.1; transform: scale(0.8); }
+        }
+
+        .bg-particle.drift {
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(10px, -5px); }
+            50% { transform: translate(-5px, 10px); }
+            75% { transform: translate(-10px, -5px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(180, 100, 255, 0.6);
+            animation: shoot 3s linear infinite;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes shoot {
+            0% {
+                opacity: 0;
+                transform: translateX(0) translateY(0) rotate(45deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(200px) translateY(200px) rotate(45deg);
+            }
+        }
+
+        .glow-orb {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(180, 100, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(20px);
+            animation: orbPulse 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes orbPulse {
+            0% { opacity: 0.1; transform: scale(0.8); }
+            50% { opacity: 0.3; transform: scale(1.2); }
+            100% { opacity: 0.1; transform: scale(0.8); }
+        }
+        
+        /* All content sits above particles */
+        .spline-section,
+        .reflection-section,
+        .extra-section,
+        .header {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* HEADER - WITH EMAIL AND PHONE */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 25px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: linear-gradient(135deg, #b064ff, #ff9cee, #b064ff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 6s ease infinite;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        .contact-info a {
+            color: #e0d0ff;
+            text-decoration: none;
+            opacity: 0.9;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+            transition: all 0.3s;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .contact-info a:hover {
+            opacity: 1;
+            text-shadow: 0 0 15px #b064ff;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .contact-info .email-link::before {
+            content: "✉️";
+            font-size: 16px;
+            margin-right: 4px;
+        }
+        
+        .contact-info .phone-link::before {
+            content: "📞";
+            font-size: 16px;
+            margin-right: 4px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-left: 15px;
+            padding-left: 15px;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            align-items: center;
+        }
+        
+        .social-icons a {
+            color: #c0a0ff;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .social-icons a:hover {
+            opacity: 1;
+            color: #ff9cee;
+            transform: scale(1.1);
+        }
+        
+        .social-icons svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        
+        /* SPLINE SECTION */
+        .spline-section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+        
+        spline-viewer {
+            width: 100%;
+            height: 120%;
+            border: none;
+            transform: scale(1.3);
+            transform-origin: center top;
+            margin-top: -10%;
+        }
+        
+        spline-viewer::part(logo) {
+            display: none !important;
+        }
+        
+        /* SOFT PURPLE HORIZON - FIRST SCREEN (BOTTOM) */
+        .horizon-top {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            height: 2px;
+            width: 100%;
+            z-index: 100;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(160, 120, 255, 0.4), 
+                rgba(140, 100, 255, 0.5), 
+                rgba(160, 120, 255, 0.4), 
+                transparent
+            );
+            box-shadow: 0 0 15px 5px rgba(140, 100, 255, 0.2);
+            animation: softHorizonGlow 5s infinite alternate;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        /* SOFT PURPLE HORIZON - SECOND SCREEN (TOP) */
+        .horizon-bottom {
+            position: absolute;
+            top: -2px;
+            left: 0;
+            height: 2px;
+            width: 100%;
+            z-index: 100;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(160, 120, 255, 0.4), 
+                rgba(140, 100, 255, 0.5), 
+                rgba(160, 120, 255, 0.4), 
+                transparent
+            );
+            box-shadow: 0 0 15px 5px rgba(140, 100, 255, 0.2);
+            animation: softHorizonGlow 5s infinite alternate;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        @keyframes softHorizonGlow {
+            0% {
+                opacity: 0.4;
+                box-shadow: 0 0 10px 3px rgba(140, 100, 255, 0.15);
+            }
+            50% {
+                opacity: 0.7;
+                box-shadow: 0 0 20px 8px rgba(160, 120, 255, 0.25);
+            }
+            100% {
+                opacity: 0.4;
+                box-shadow: 0 0 10px 3px rgba(140, 100, 255, 0.15);
+            }
+        }
+        
+        /* REFLECTION SECTION */
+        .reflection-section {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            background: transparent;
+            overflow: hidden;
+        }
+        
+        #reflectionCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            filter: blur(3px);
+            opacity: 0.85;
+        }
+        
+        /* PURPLE TINT */
+        .purple-tint {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(100, 50, 150, 0.15);
+            z-index: 25;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+        
+        /* CONTENT */
+        .reflection-content {
+            position: relative;
+            z-index: 40;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            color: white;
+            pointer-events: auto;
+        }
+        
+        /* SECOND SCREEN HEADING - WELCOME IN BITCOUNT */
+        h2 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            font-family: 'Bitcount Prop Double Ink', cursive;
+            font-weight: normal;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff, #e0b0ff, #ffb3d9, #c08aff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s ease infinite;
+            text-shadow: 0 0 40px rgba(180, 100, 255, 0.3);
+        }
+        
+        /* BIO TEXT - DARKER PURPLE */
+        .reflection-content p {
+            font-size: 20px;
+            margin-bottom: 50px;
+            color: #9f8abf;
+            font-weight: 400;
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+            max-width: 700px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* BUTTONS - WITH FLOATING ANIMATION */
+        .buttons-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+        
+        .interactive-btn {
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Arial', sans-serif;
+            letter-spacing: 0.5px;
+            background: rgba(20, 10, 30, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 50;
+            overflow: hidden;
+            animation: float 4s ease-in-out infinite;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        /* Different float delays for each button */
+        .interactive-btn:nth-child(1) { animation-delay: 0s; }
+        .interactive-btn:nth-child(2) { animation-delay: 0.5s; }
+        .interactive-btn:nth-child(3) { animation-delay: 1s; }
+        .interactive-btn:nth-child(4) { animation-delay: 1.5s; }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .interactive-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+            z-index: -1;
+        }
+        
+        .interactive-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: rgba(255, 156, 238, 0.6);
+            box-shadow: 0 15px 35px rgba(180, 100, 255, 0.4);
+            background: rgba(180, 100, 255, 0.2);
+            animation-play-state: paused;
+        }
+        
+        .interactive-btn:hover::before {
+            left: 100%;
+        }
+        
+        .interactive-btn i {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+        
+        .interactive-btn.music {
+            background: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(180, 100, 255, 0.2));
+        }
+        
+        .interactive-btn.artwork {
+            background: linear-gradient(135deg, rgba(180, 100, 255, 0.2), rgba(220, 120, 255, 0.2));
+        }
+        
+        .interactive-btn.youtube {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(180, 100, 255, 0.2));
+        }
+        
+        .interactive-btn.instagram {
+            background: linear-gradient(135deg, rgba(225, 48, 108, 0.2), rgba(180, 100, 255, 0.2));
+        }
+        
+        /* FEATURED GRID - WITH FLOATING ANIMATION */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .featured-item {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 35px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            text-align: center;
+            animation: float 5s ease-in-out infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Different float speeds for each card */
+        .featured-item:nth-child(1) { animation-duration: 4.5s; animation-delay: 0.2s; }
+        .featured-item:nth-child(2) { animation-duration: 5.2s; animation-delay: 0.7s; }
+        .featured-item:nth-child(3) { animation-duration: 4.8s; animation-delay: 1.2s; }
+        
+        .featured-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(180, 100, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(180, 100, 255, 0.25);
+            background: rgba(180, 100, 255, 0.1);
+            animation-play-state: paused;
+        }
+        
+        .featured-item i {
+            font-size: 48px;
+            color: #b064ff;
+            filter: drop-shadow(0 0 15px #b064ff);
+            transition: all 0.3s;
+            animation: iconPulse 3s ease-in-out infinite;
+            margin-bottom: 10px;
+        }
+        
+        .featured-item:hover i {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 25px #ff9cee);
+            color: #ff9cee;
+        }
+        
+        .featured-item div {
+            font-size: 20px;
+            font-weight: 600;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffffff, #d0a0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        @keyframes iconPulse {
+            0% { filter: drop-shadow(0 0 15px #b064ff); }
+            50% { filter: drop-shadow(0 0 25px #ff9cee); }
+            100% { filter: drop-shadow(0 0 15px #b064ff); }
+        }
+        
+        /* EXTRA PAGE SECTION */
+        .extra-section {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            background: transparent;
+            z-index: 30;
+            padding: 100px 40px;
+            border-top: 2px solid rgba(180, 100, 255, 0.2);
+            overflow: hidden;
+        }
+        
+        .extra-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .extra-content h3 {
+            font-size: 56px;
+            margin-bottom: 30px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #e0b0ff, #ffb6c1, #b064ff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s ease infinite;
+            text-shadow: 0 0 30px rgba(180, 100, 255, 0.3);
+        }
+        
+        .extra-content > p {
+            font-size: 20px;
+            color: #d0c0e0;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            line-height: 1.7;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .extra-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .extra-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(180, 100, 255, 0.15);
+            border-radius: 30px;
+            padding: 45px 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .extra-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(180, 100, 255, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+        
+        .extra-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(180, 100, 255, 0.5);
+            box-shadow: 0 25px 45px rgba(180, 100, 255, 0.25);
+        }
+        
+        .extra-card:hover::before {
+            opacity: 1;
+        }
+        
+        .extra-card i {
+            font-size: 52px;
+            color: #b064ff;
+            filter: drop-shadow(0 0 15px rgba(180, 100, 255, 0.5));
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+        
+        .extra-card:hover i {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 25px #ff9cee);
+            color: #ff9cee;
+        }
+        
+        .extra-card h4 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #ffb3d9, #c08aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .extra-card p {
+            color: #b0a0c0;
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 400;
+            max-width: 250px;
+            margin: 0 auto;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+    
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.69/build/spline-viewer.js"></script>
+</head>
+<body>
+
+    <!-- SVG Logo Definitions for Social Icons ONLY -->
+    <svg style="display: none;">
+        <symbol id="youtube-logo" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </symbol>
+        
+        <symbol id="instagram-logo" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+        </symbol>
+        
+        <symbol id="spotify-logo" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 4.2-1.32 9.54-.66 13.14 1.56.36.24.48.84.241 1.26zm.119-3.36c-3.84-2.28-10.141-2.52-13.74-1.38-.6.18-1.26-.18-1.44-.78-.18-.6.18-1.26.78-1.44 4.14-1.26 11.101-.96 15.48 1.62.54.3.72 1.02.42 1.56-.3.421-1.02.6-1.56.42z"/>
+        </symbol>
+    </svg>
+
+    <!-- WEBSITE-WIDE PARTICLE BACKGROUND -->
+    <div id="particle-background"></div>
+
+    <!-- HEADER - WITH EMAIL AND PHONE AND SVG LOGOS -->
+    <div class="header">
+        <div class="logo">
+            ANTONIO MATTA
+        </div>
+        <div class="contact-info">
+            <a href="mailto:xantoniomatta@gmail.com" class="email-link">xantoniomatta@gmail.com</a>
+            <a href="tel:+96181863628" class="phone-link">+961 81 863 628</a>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/im_eloww/" target="_blank" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <use href="#instagram-logo"></use>
+                    </svg>
+                </a>
+                <a href="https://www.youtube.com/@5pectreX" target="_blank" title="YouTube">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <use href="#youtube-logo"></use>
+                    </svg>
+                </a>
+                <a href="https://open.spotify.com/artist/6EyX3vC6qilGnaRSYrQlPd" target="_blank" title="Spotify">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <use href="#spotify-logo"></use>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SPLINE SECTION -->
+    <div class="spline-section">
+        <spline-viewer 
+            id="mainSpline"
+            url="https://prod.spline.design/y81KrpgVPCsnUVg8/scene.splinecode"
+            loading-anim>
+        </spline-viewer>
+        <div class="horizon-top"></div>
+    </div>
+
+    <!-- REFLECTION SECTION - WITH FLOATING BUTTONS AND CARDS -->
+    <div class="reflection-section">
+        <canvas id="reflectionCanvas"></canvas>
+        <div class="purple-tint"></div>
+        <div class="horizon-bottom"></div>
+        
+        <div class="reflection-content">
+            <h2>✦ Welcome ✦</h2>
+            <p>19 years old · Music producer for 6 years · Self-taught guitarist</p>
+            
+            <div class="buttons-grid">
+                <a href="music.html" class="interactive-btn music" id="btn-music">
+                    <i class="fas fa-music"></i> Music
+                </a>
+                <a href="artwork.html" class="interactive-btn artwork" id="btn-artwork">
+                    <i class="fas fa-palette"></i> Artwork
+                </a>
+                <a href="https://www.youtube.com/@5pectreX" target="_blank" class="interactive-btn youtube" id="btn-youtube">
+                    <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 5px;">
+                        <use href="#youtube-logo"></use>
+                    </svg>
+                    YouTube
+                </a>
+                <a href="https://www.instagram.com/im_eloww/" target="_blank" class="interactive-btn instagram" id="btn-instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 5px;">
+                        <use href="#instagram-logo"></use>
+                    </svg>
+                    Instagram
+                </a>
+            </div>
+            
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <i class="fas fa-hourglass-half"></i>
+                    <div>6 Years Producing</div>
+                </div>
+                <div class="featured-item">
+                    <i class="fas fa-guitar"></i>
+                    <div>Self-Taught Guitarist</div>
+                </div>
+                <div class="featured-item">
+                    <i class="fas fa-birthday-cake"></i>
+                    <div>19 Years Old</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- EXTRA PAGE SECTION -->
+    <div class="extra-section">
+        <div class="extra-content">
+            <h3>✦ ABOUT ANTONIO ✦</h3>
+            <p>I'm Antonio Matta, a 19-year-old music producer and self-taught guitarist. I've been creating music for 6 years, blending electronic production with organic guitar textures.</p>
+        
+            <div class="extra-grid">
+                <div class="extra-card">
+                    <i class="fas fa-sliders-h"></i>
+                    <h4>Production</h4>
+                    <p>6 years of experience producing across multiple genres</p>
+                </div>
+                <div class="extra-card">
+                    <i class="fas fa-headphones"></i>
+                    <h4>Sound Design</h4>
+                    <p>Crafting unique sonic textures and electronic atmospheres</p>
+                </div>
+                <div class="extra-card">
+                    <i class="fas fa-eye"></i>
+                    <h4>Vision</h4>
+                    <p>Creating at the intersection of digital and analog sound</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIXED REFLECTION SCRIPT -->
+    <script>
+        (function() {
+            const splineElement = document.getElementById('mainSpline');
+            const canvas = document.getElementById('reflectionCanvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            
+            function resizeCanvas() {
+                const rect = document.querySelector('.reflection-section').getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            }
+            
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            
+            function drawGradient() {
+                const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                gradient.addColorStop(0, '#2a1a3a');
+                gradient.addColorStop(1, '#1a0a2a');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            
+            drawGradient();
+            
+            function drawReflection() {
+                drawGradient();
+                
+                if (splineElement && splineElement.shadowRoot) {
+                    const splineCanvas = splineElement.shadowRoot.querySelector('canvas');
+                    
+                    if (splineCanvas && splineCanvas.width > 0) {
+                        try {
+                            ctx.save();
+                            
+                            // Flip vertically for mirror
+                            ctx.translate(0, canvas.height);
+                            ctx.scale(1, -1);
+                            
+                            // MATCH EXACT ZOOM AND POSITION OF FIRST SCREEN
+                            const zoom = 1.3;
+                            
+                            // Calculate zoomed dimensions
+                            const zoomedWidth = canvas.width * zoom;
+                            const zoomedHeight = canvas.height * zoom;
+                            
+                            // Center the image
+                            const offsetX = (zoomedWidth - canvas.width) / 2;
+                            
+                            // SYMMETRICAL POSITIONING
+                            const offsetY = 0;
+                            
+                            // Draw zoomed and centered
+                            ctx.drawImage(
+                                splineCanvas, 
+                                -offsetX, -offsetY,
+                                zoomedWidth, zoomedHeight
+                            );
+                            
+                            ctx.restore();
+                            
+                            // Add subtle blur overlay
+                            ctx.save();
+                            ctx.filter = 'blur(2px)';
+                            ctx.globalAlpha = 0.4;
+                            ctx.globalCompositeOperation = 'screen';
+                            ctx.drawImage(canvas, 0, 0);
+                            ctx.restore();
+                            
+                        } catch (e) {}
+                    }
+                }
+                
+                requestAnimationFrame(drawReflection);
+            }
+            
+            setTimeout(drawReflection, 500);
+        })();
+    </script>
+
+    <!-- ENHANCED PARALLAX PARTICLES -->
+    <script>
+        (function() {
+            const container = document.getElementById('particle-background');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            const particleCount = 300;
+            const particles = [];
+            
+            function createShootingStar() {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(star);
+                
+                setTimeout(() => {
+                    if (star.parentNode) star.remove();
+                }, 8000);
+            }
+            
+            function createGlowOrb() {
+                const orb = document.createElement('div');
+                orb.className = 'glow-orb';
+                orb.style.left = Math.random() * 100 + '%';
+                orb.style.top = Math.random() * 100 + '%';
+                orb.style.animationDelay = Math.random() * 5 + 's';
+                orb.style.animationDuration = (8 + Math.random() * 4) + 's';
+                container.appendChild(orb);
+                
+                setTimeout(() => {
+                    if (orb.parentNode) orb.remove();
+                }, 15000);
+            }
+            
+            setInterval(createShootingStar, 3000);
+            setInterval(createGlowOrb, 8000);
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                
+                const type = Math.floor(Math.random() * 4) + 1;
+                particle.className = `bg-particle type-${type}`;
+                
+                if (Math.random() < 0.2) {
+                    particle.classList.add('twinkle');
+                }
+                if (Math.random() < 0.1) {
+                    particle.classList.add('drift');
+                }
+                
+                const size = 1 + Math.random() * 19;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.opacity = 0.03 + Math.random() * 0.47;
+                
+                if (Math.random() < 0.3) {
+                    particle.style.borderRadius = '30% 70% 70% 30% / 30% 30% 70% 70%';
+                }
+                
+                const data = {
+                    element: particle,
+                    x: Math.random() * 100,
+                    y: Math.random() * 100,
+                    baseX: Math.random() * 100,
+                    baseY: Math.random() * 100,
+                    speedX: (Math.random() - 0.5) * 0.03,
+                    speedY: (Math.random() - 0.5) * 0.03,
+                    parallaxFactor: 0.1 + Math.random() * 0.9,
+                    size: size,
+                    phase: Math.random() * Math.PI * 2,
+                    type: type
+                };
+                
+                particles.push(data);
+                container.appendChild(particle);
+            }
+            
+            let lastScrollY = window.scrollY;
+            let scrollVelocity = 0;
+            
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                scrollVelocity = currentScrollY - lastScrollY;
+                lastScrollY = currentScrollY;
+                
+                particles.forEach(p => {
+                    const speedFactor = Math.min(3, Math.abs(scrollVelocity) * 0.15 + 1);
+                    
+                    let typeFactor = 1;
+                    if (p.type === 2) typeFactor = 0.7;
+                    if (p.type === 3) typeFactor = 1.3;
+                    if (p.type === 4) typeFactor = 1.5;
+                    
+                    const parallaxX = currentScrollY * p.parallaxFactor * 0.1 * typeFactor * (scrollVelocity > 0 ? 1 : 0.7);
+                    const parallaxY = currentScrollY * p.parallaxFactor * 0.08 * typeFactor * (scrollVelocity > 0 ? 1 : 0.7);
+                    
+                    const extraX = Math.sin(currentScrollY * 0.02 + p.phase) * 8 * (Math.abs(scrollVelocity) * 0.03);
+                    const extraY = Math.cos(currentScrollY * 0.02 + p.phase) * 8 * (Math.abs(scrollVelocity) * 0.03);
+                    
+                    p.element.style.transform = `translate(${parallaxX + extraX}px, ${parallaxY + extraY}px)`;
+                });
+            });
+            
+            function animate() {
+                particles.forEach(p => {
+                    let moveX = p.speedX;
+                    let moveY = p.speedY;
+                    
+                    if (p.type === 2) {
+                        moveX += Math.sin(Date.now() * 0.001 + p.phase) * 0.03;
+                        moveY += Math.cos(Date.now() * 0.001 + p.phase) * 0.03;
+                    } else if (p.type === 3) {
+                        moveX += Math.sin(Date.now() * 0.002 + p.phase) * 0.04;
+                        moveY += Math.sin(Date.now() * 0.002 + p.phase * 2) * 0.04;
+                    } else {
+                        moveX += Math.sin(Date.now() * 0.001 + p.phase) * 0.02;
+                        moveY += Math.cos(Date.now() * 0.001 + p.phase * 1.5) * 0.02;
+                    }
+                    
+                    p.x += moveX;
+                    p.y += moveY;
+                    
+                    if (p.x > 100) p.x = 0;
+                    if (p.x < 0) p.x = 100;
+                    if (p.y > 100) p.y = 0;
+                    if (p.y < 0) p.y = 100;
+                    
+                    p.element.style.left = p.x + '%';
+                    p.element.style.top = p.y + '%';
+                    
+                    let pulseBase = 0.8;
+                    if (p.type === 2) pulseBase = 0.9;
+                    if (p.type === 3) pulseBase = 0.7;
+                    
+                    const pulse = pulseBase + Math.sin(Date.now() * 0.002 + p.phase) * 0.25;
+                    p.element.style.transform = `scale(${pulse})`;
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        })();
+    </script>
+
+</body>
+</html>
