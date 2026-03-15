@@ -475,32 +475,58 @@
             <div class="project-header">
                 <h2>moonlight</h2>
                 <div class="project-subheader">
-                    <span class="year-badge">2024</span>
+                    <span class="year-badge">2025</span>
+                    <span class="role-badge">Electronic/Lo-Fi/Indie</span>
                     <span class="role-badge">Producer</span>
                     <span class="role-badge">Composer</span>
                 </div>
             </div>
-            
+        
             <div class="media-container">
                 <iframe class="spotify-player" src="https://open.spotify.com/embed/track/1kGc9RxjA2ia2sNCMAdt3p?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
             </div>
-            <div style="text-align: center; margin-top: 15px;">
-                <a href="https://www.youtube.com/watch?v=lB1KLt_rwTw" target="_blank" style="display: inline-block; padding: 10px 25px; background: rgba(180, 100, 255, 0.2); border: 1px solid rgba(180, 100, 255, 0.4); border-radius: 50px; color: white; text-decoration: none; font-size: 14px; transition: all 0.3s;">
-                    <i class="fab fa-youtube" style="margin-right: 8px; color: #ff0000;"></i> Watch on YouTube
+        
+            <!-- YouTube Player -->
+            <div class="media-container">
+                <iframe class="youtube-player" width="100%" height="315" src="https://www.youtube.com/embed/lB1KLt_rwTw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        
+            <!-- Button Group - YouTube and Spotify side by side -->
+            <div style="display: flex; gap: 15px; justify-content: center; margin: 20px 0; flex-wrap: wrap;">
+                <a href="https://www.youtube.com/watch?v=lB1KLt_rwTw" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 30px; background: rgba(180, 100, 255, 0.2); border: 1px solid rgba(180, 100, 255, 0.4); border-radius: 50px; color: white; text-decoration: none; font-size: 16px; transition: all 0.3s;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" style="fill: currentColor;">
+                        <use href="#youtube-logo"></use>
+                    </svg>
+                    Listen on YouTube
+                </a>
+                <a href="https://open.spotify.com/track/1kGc9RxjA2ia2sNCMAdt3p?si=cca3360cbd01404e" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 30px; background: rgba(180, 100, 255, 0.2); border: 1px solid rgba(180, 100, 255, 0.4); border-radius: 50px; color: white; text-decoration: none; font-size: 16px; transition: all 0.3s;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" style="fill: currentColor;">
+                        <use href="#spotify-logo"></use>
+                    </svg>
+                    Listen on Spotify
                 </a>
             </div>
-            
+
             <div class="project-description">
-                A solo electronic track exploring digital soundscapes. Released on Spotify and later re-uploaded to YouTube as "void.exe".
+                A solo track in the style of a Minecraft music disc. Released on Spotify and later re-uploaded to YouTube.
             </div>
-            
-            <div class="credits">
-                <i class="fas fa-music"></i> Producer · Composer
+        
+            <!-- CREDITS SECTION - MOON SVG REPLACES MUSIC NOTE -->
+            <div class="credits" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 8px #b064ff);">
+                    <path d="M12 3C10.6868 3 9.38642 3.25866 8.17317 3.7612C6.95991 4.26375 5.85752 5.00035 4.92893 5.92893C3.05357 7.8043 2 10.3478 2 13C2 15.6522 3.05357 18.1957 4.92893 20.0711C5.85752 20.9997 6.95991 21.7362 8.17317 22.2388C9.38642 22.7413 10.6868 23 12 23C14.6522 23 17.1957 21.9464 19.0711 20.0711C20.9464 18.1957 22 15.6522 22 13C22 10.3478 20.9464 7.8043 19.0711 5.92893C18.1425 5.00035 17.0401 4.26375 15.8268 3.7612C14.6136 3.25866 13.3132 3 12 3Z" fill="url(#moon-gradient-credits)"/>
+                    <defs>
+                        <linearGradient id="moon-gradient-credits" x1="2" y1="3" x2="22" y2="23" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#b064ff"/>
+                            <stop offset="1" stop-color="#ff9cee"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>Producer · Composer</span>
             </div>
         </div>
         <div class="scroll-indicator">SCROLL ↓</div>
     </section>
-
     <!-- PROJECT 2: MINE (2025) -->
     <section class="project-section">
         <div class="project-container">
@@ -508,6 +534,7 @@
                 <h2>MINE</h2>
                 <div class="project-subheader">
                     <span class="year-badge">Late 2025</span>
+                    <span class="role-badge">Epic/Dark/Cinematic/Orchestral/Indie</span>
                     <span class="role-badge">Producer</span>
                     <span class="role-badge">Composer</span>
                     <span class="role-badge">Lyricist</span>
@@ -519,7 +546,7 @@
             </div>
             
             <div class="project-description">
-                A collaborative track featuring Taki. Animation by Caline Hankache.
+                A collaborative musical track following the world of Greek mythology as it's about the confrontation and death of Adonis by Ares.
             </div>
             
             <div class="credits">
@@ -529,71 +556,81 @@
         <div class="scroll-indicator">SCROLL ↓</div>
     </section>
 
-    <!-- PROJECT 3: Trace the Line (2025 WIP) -->
-    <section class="project-section">
-        <div class="project-container">
-            <div class="project-header">
-                <h2>Trace the Line</h2>
-                <div class="project-subheader">
-                    <span class="year-badge">Early 2025</span>
-                    <span class="role-badge">Producer</span>
-                    <span class="role-badge">Composer</span>
-                </div>
-            </div>
-            
-            <div class="media-container audio-player">
-                <audio controls>
-                    <source src="https://drive.google.com/uc?export=download&id=1NSUUPnSnfcXCRqwVe-x3WYd2ZVFxP_ND" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            
-            <div class="project-description">
-                A fan song created with two friends as an appreciation for izzynotpresent's Minecraft animation series "Deception".
-            </div>
-            
-            <div style="text-align: center;">
-                <span class="status-wip"><i class="fas fa-spinner"></i> Work in Progress</span>
-            </div>
-            
-            <div class="credits">
-                <i class="fas fa-headphones"></i> Fan song for Deception
+        <!-- PROJECT 3: Trace the Line (2025 WIP) -->
+<section class="project-section">
+    <div class="project-container">
+        <div class="project-header">
+            <h2>Trace the Line</h2>
+            <div class="project-subheader">
+                <span class="year-badge">Early 2025</span>
+                <span class="role-badge">Dark/Synthwave/Electronic/Indie</span>
+                <span class="role-badge">Producer</span>
+                <span class="role-badge">Composer</span>
             </div>
         </div>
-        <div class="scroll-indicator">SCROLL ↓</div>
-    </section>
-
-    <!-- PROJECT 4: Dynasties Theme (2020) -->
-    <section class="project-section">
-        <div class="project-container">
-            <div class="project-header">
-                <h2>Dynasties Theme</h2>
-                <div class="project-subheader">
-                    <span class="year-badge">2020</span>
-                    <span class="role-badge">Producer</span>
-                    <span class="role-badge">Composer</span>
+        
+                <!-- Google Drive Audio Player - WORKS! -->
+                <div class="media-container" style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 20px;">
+                    <iframe 
+                        src="https://drive.google.com/file/d/1NSUUPnSnfcXCRqwVe-x3WYd2ZVFxP_ND/preview" 
+                        width="100%" 
+                        height="80" 
+                        style="border: none; border-radius: 12px;"
+                        allow="autoplay">
+                    </iframe>
+                </div>
+        
+        
+                <div class="project-description">
+                    A fan song created with two friends as an appreciation for izzynotpresent's Minecraft animation series "Deception".
+                </div>
+        
+                <div style="text-align: center;">
+                    <span class="status-wip"><i class="fas fa-spinner"></i> Work in Progress</span>
+                </div>
+        
+                <div class="credits">
+                    <i class="fas fa-headphones"></i> Fan song for Deception
                 </div>
             </div>
-            
-            <div class="media-container">
-                <iframe class="youtube-player" width="100%" height="315" src="https://www.youtube.com/embed/DXPD5e-GJco" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+<!-- PROJECT 4: Dynasties Theme (2020) -->
+<section class="project-section">
+    <div class="project-container">
+        <div class="project-header">
+            <h2>Dynasties Theme</h2>
+            <div class="project-subheader">
+                <span class="year-badge">2020</span>
+                <span class="role-badge">Epic/Orchestral/Indie</span>
+                <span class="role-badge">Producer</span>
+                <span class="role-badge">Composer</span>
             </div>
-            
+        </div>
+        
+        <!-- YouTube Player -->
+        <div class="media-container">
+            <iframe class="youtube-player" width="100%" height="315" src="https://www.youtube.com/embed/DXPD5e-GJco" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+        <!-- YouTube Button with Purple SVG -->
             <div style="text-align: center; margin-top: 20px;">
-                <a href="https://www.youtube.com/watch?v=DXPD5e-GJco" target="_blank" style="display: inline-block; padding: 12px 30px; background: rgba(180, 100, 255, 0.2); border: 1px solid rgba(180, 100, 255, 0.4); border-radius: 50px; color: white; text-decoration: none; font-size: 16px; font-weight: 500; transition: all 0.3s;">
-                    <i class="fab fa-youtube" style="margin-right: 8px; color: #ff0000;"></i> Watch on YouTube
+                <a href="https://www.youtube.com/watch?v=DXPD5e-GJco" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 30px; background: rgba(180, 100, 255, 0.2); border: 1px solid rgba(180, 100, 255, 0.4); border-radius: 50px; color: white; text-decoration: none; font-size: 16px; transition: all 0.3s;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" style="fill: currentColor;">
+                        <use href="#youtube-logo"></use>
+                    </svg>
+                    Listen on YouTube
                 </a>
             </div>
+        
             <div class="project-description">
                 The official theme for the cancelled Minecraft project "Dynasties". This track represents my earliest released work, created in 2020.
             </div>
-            
+        
             <div class="credits">
                 <i class="fas fa-clock"></i> Archival Work · Minecraft Server Theme
             </div>
         </div>
     </section>
-
     <!-- Floating particles script -->
     <script>
         (function() {
