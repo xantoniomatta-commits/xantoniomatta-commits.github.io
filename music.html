@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antonio Matta - Music Portfolio</title>
     <!-- Google Fonts -->
@@ -18,7 +17,6 @@
             overscroll-behavior-y: none;
         }
         
-        /* rest of your CSS */
         * {
             margin: 0;
             padding: 0;
@@ -31,9 +29,117 @@
             transition: background-color 0.8s ease;
             color: white;
             overflow-x: hidden;
+            position: relative;
         }
-        
-        /* HEADER - EXACTLY LIKE INDEX.HTML */
+
+        /* Edge Lighting Effects */
+        .edge-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Top edge glow */
+        .edge-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(180deg, 
+                rgba(100, 150, 255, 0.25) 0%,
+                transparent 100%
+            );
+            animation: edgePulse 4s infinite alternate;
+        }
+
+        /* Bottom edge glow */
+        .edge-glow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(0deg, 
+                rgba(100, 150, 255, 0.25) 0%,
+                transparent 100%
+            );
+            animation: edgePulse 4s infinite alternate reverse;
+        }
+
+        /* Left edge glow */
+        .left-edge {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(100, 150, 255, 0.2) 0%,
+                transparent 100%
+            );
+            pointer-events: none;
+            z-index: 5;
+            animation: edgePulse 5s infinite alternate;
+        }
+
+        /* Right edge glow */
+        .right-edge {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            background: linear-gradient(270deg, 
+                rgba(100, 150, 255, 0.2) 0%,
+                transparent 100%
+            );
+            pointer-events: none;
+            z-index: 5;
+            animation: edgePulse 5s infinite alternate reverse;
+        }
+
+        @keyframes edgePulse {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.6; }
+        }
+
+        /* Section-specific glow colors - applied via JavaScript */
+        .moonlight-glow .edge-glow::before,
+        .moonlight-glow .edge-glow::after,
+        .moonlight-glow .left-edge,
+        .moonlight-glow .right-edge {
+            background: rgba(100, 150, 255, 0.25);
+        }
+
+        .mine-glow .edge-glow::before,
+        .mine-glow .edge-glow::after,
+        .mine-glow .left-edge,
+        .mine-glow .right-edge {
+            background: rgba(200, 80, 80, 0.25);
+        }
+
+        .trace-glow .edge-glow::before,
+        .trace-glow .edge-glow::after,
+        .trace-glow .left-edge,
+        .trace-glow .right-edge {
+            background: rgba(255, 80, 180, 0.3);
+        }
+
+        .dynasties-glow .edge-glow::before,
+        .dynasties-glow .edge-glow::after,
+        .dynasties-glow .left-edge,
+        .dynasties-glow .right-edge {
+            background: rgba(150, 100, 255, 0.25);
+        }
+
+        /* HEADER */
         .header {
             position: fixed;
             top: 20px;
@@ -184,39 +290,7 @@
             }
         }
         
-        /* SVG Logo Definitions */
-        <svg style="display: none;">
-            <symbol id="youtube-logo" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </symbol>
-            
-            <symbol id="instagram-logo" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
-            </symbol>
-            
-            <symbol id="spotify-logo" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 4.2-1.32 9.54-.66 13.14 1.56.36.24.48.84.241 1.26zm.119-3.36c-3.84-2.28-10.141-2.52-13.74-1.38-.6.18-1.26-.18-1.44-.78-.18-.6.18-1.26.78-1.44 4.14-1.26 11.101-.96 15.48 1.62.54.3.72 1.02.42 1.56-.3.421-1.02.6-1.56.42z"/>
-            </symbol>
-        </svg>
-        
-        /* Rest of your music page CSS */
-        .btn-secondary {
-            display: inline-block;
-            padding: 10px 25px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: scale(1.05);
-        }
-        
+        /* Project Sections */
         .project-section {
             min-height: 100vh;
             width: 100%;
@@ -238,8 +312,34 @@
             border-radius: 40px;
             padding: 40px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 10;
         }
-        
+        /* Container glow transitions */
+        .project-container {
+            transition: box-shadow 0.5s ease, border-color 0.5s ease;
+        }
+
+        /* Section-specific container glows */
+        .moonlight-glow .project-container {
+            box-shadow: 0 20px 40px rgba(80, 120, 220, 0.3);
+            border-color: rgba(80, 120, 220, 0.4);
+        }
+
+        .mine-glow .project-container {
+            box-shadow: 0 20px 40px rgba(200, 50, 70, 0.3);
+            border-color: rgba(200, 50, 70, 0.4);
+        }
+
+        .trace-glow .project-container {
+            box-shadow: 0 20px 40px rgba(255, 50, 180, 0.35);
+            border-color: rgba(255, 50, 180, 0.45);
+        }
+
+        .dynasties-glow .project-container {
+            box-shadow: 0 20px 40px rgba(140, 80, 220, 0.3);
+            border-color: rgba(140, 80, 220, 0.4);
+        }
         .project-header {
             text-align: center;
             margin-bottom: 30px;
@@ -358,6 +458,7 @@
             font-size: 14px;
             letter-spacing: 2px;
             animation: bounce 2s infinite;
+            z-index: 20;
         }
         
         @keyframes bounce {
@@ -398,7 +499,7 @@
             background: rgba(180, 100, 255, 0.2);
             border-radius: 50%;
             pointer-events: none;
-            z-index: 0;
+            z-index: 2;
             animation: floatParticle 10s ease-in-out infinite;
         }
         
@@ -437,10 +538,15 @@
         </symbol>
     </svg>
 
-    <!-- Floating particles -->
+    <!-- Edge Lighting Elements -->
+    <div class="edge-glow"></div>
+    <div class="left-edge"></div>
+    <div class="right-edge"></div>
+
+    <!-- Floating particles container -->
     <div id="particle-container"></div>
 
-    <!-- HEADER - EXACTLY LIKE INDEX.HTML -->
+    <!-- HEADER -->
     <div class="header">
         <div class="logo">
             ANTONIO MATTA
@@ -474,7 +580,7 @@
     </a>
 
     <!-- PROJECT 1: moonlight (2024) -->
-    <section class="project-section moonlight-section">
+    <section class="project-section moonlight-glow">
         <div class="project-container">
             <div class="project-header">
                 <h2>moonlight</h2>
@@ -490,12 +596,10 @@
                 <iframe class="spotify-player" src="https://open.spotify.com/embed/track/1kGc9RxjA2ia2sNCMAdt3p?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
             </div>
         
-            <!-- YouTube Player -->
             <div class="media-container">
                 <iframe class="youtube-player" width="100%" height="315" src="https://www.youtube.com/embed/lB1KLt_rwTw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         
-            <!-- Button Group - YouTube and Spotify side by side -->
             <div style="display: flex; gap: 15px; justify-content: center; margin: 20px 0; flex-wrap: wrap;">
                 <a href="https://www.youtube.com/watch?v=lB1KLt_rwTw" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 30px; background: rgba(180, 100, 255, 0.2); border: 1px solid rgba(180, 100, 255, 0.4); border-radius: 50px; color: white; text-decoration: none; font-size: 16px; transition: all 0.3s;">
                     <svg width="20" height="20" viewBox="0 0 24 24" style="fill: currentColor;">
@@ -515,7 +619,6 @@
                 A solo track in the style of a Minecraft music disc. Released on Spotify and later re-uploaded to YouTube.
             </div>
         
-            <!-- CREDITS SECTION - MOON SVG REPLACES MUSIC NOTE -->
             <div class="credits" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 8px #b064ff);">
                     <path d="M12 3C10.6868 3 9.38642 3.25866 8.17317 3.7612C6.95991 4.26375 5.85752 5.00035 4.92893 5.92893C3.05357 7.8043 2 10.3478 2 13C2 15.6522 3.05357 18.1957 4.92893 20.0711C5.85752 20.9997 6.95991 21.7362 8.17317 22.2388C9.38642 22.7413 10.6868 23 12 23C14.6522 23 17.1957 21.9464 19.0711 20.0711C20.9464 18.1957 22 15.6522 22 13C22 10.3478 20.9464 7.8043 19.0711 5.92893C18.1425 5.00035 17.0401 4.26375 15.8268 3.7612C14.6136 3.25866 13.3132 3 12 3Z" fill="url(#moon-gradient-credits)"/>
@@ -531,8 +634,9 @@
         </div>
         <div class="scroll-indicator">SCROLL ↓</div>
     </section>
-            <!-- PROJECT 2: MINE (2025) -->
-    <section class="project-section mine-section">
+
+    <!-- PROJECT 2: MINE (2025) -->
+    <section class="project-section mine-glow">
         <div class="project-container">
             <div class="project-header">
                 <h2>MINE</h2>
@@ -561,8 +665,8 @@
         <div class="scroll-indicator">SCROLL ↓</div>
     </section>
 
-        <!-- PROJECT 3: Trace the Line (2025 WIP) -->
-    <section class="project-section trace-section">
+    <!-- PROJECT 3: Trace the Line (2025 WIP) -->
+    <section class="project-section trace-glow">
         <div class="project-container">
             <div class="project-header">
                 <h2>Trace the Line</h2>
@@ -574,50 +678,48 @@
                 </div>
             </div>
         
-                <!-- Google Drive Audio Player - WORKS! -->
-                <div class="media-container" style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 20px;">
-                    <iframe 
-                        src="https://drive.google.com/file/d/1NSUUPnSnfcXCRqwVe-x3WYd2ZVFxP_ND/preview" 
-                        width="100%" 
-                        height="80" 
-                        style="border: none; border-radius: 12px;"
-                        allow="autoplay">
-                    </iframe>
-                </div>
+            <div class="media-container" style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 20px;">
+                <iframe 
+                    src="https://drive.google.com/file/d/1NSUUPnSnfcXCRqwVe-x3WYd2ZVFxP_ND/preview" 
+                    width="100%" 
+                    height="80" 
+                    style="border: none; border-radius: 12px;"
+                    allow="autoplay">
+                </iframe>
+            </div>
         
+            <div class="project-description">
+                A fan song created with two friends as an appreciation for izzynotpresent's Minecraft animation series "Deception".
+            </div>
         
-                <div class="project-description">
-                    A fan song created with two friends as an appreciation for izzynotpresent's Minecraft animation series "Deception".
-                </div>
+            <div style="text-align: center;">
+                <span class="status-wip"><i class="fas fa-spinner"></i> Work in Progress</span>
+            </div>
         
-                <div style="text-align: center;">
-                    <span class="status-wip"><i class="fas fa-spinner"></i> Work in Progress</span>
-                </div>
-        
-                <div class="credits">
-                    <i class="fas fa-headphones"></i> Fan song for Deception
+            <div class="credits">
+                <i class="fas fa-headphones"></i> Fan song for Deception
+            </div>
+        </div>
+        <div class="scroll-indicator">SCROLL ↓</div>
+    </section>
+
+    <!-- PROJECT 4: Dynasties Theme (2020) -->
+    <section class="project-section dynasties-glow">
+        <div class="project-container">
+            <div class="project-header">
+                <h2>Dynasties Theme</h2>
+                <div class="project-subheader">
+                    <span class="year-badge">2020</span>
+                    <span class="role-badge">Epic/Orchestral/Indie</span>
+                    <span class="role-badge">Producer</span>
+                    <span class="role-badge">Composer</span>
                 </div>
             </div>
-        </section>
-        <!-- PROJECT 4: Dynasties Theme (2020) -->
-        <section class="project-section dynasties-section">
-            <div class="project-container">
-                <div class="project-header">
-                    <h2>Dynasties Theme</h2>
-                    <div class="project-subheader">
-                        <span class="year-badge">2020</span>
-                        <span class="role-badge">Epic/Orchestral/Indie</span>
-                        <span class="role-badge">Producer</span>
-                        <span class="role-badge">Composer</span>
-                    </div>
-                </div>
         
-        <!-- YouTube Player -->
-        <div class="media-container">
-            <iframe class="youtube-player" width="100%" height="315" src="https://www.youtube.com/embed/DXPD5e-GJco" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+            <div class="media-container">
+                <iframe class="youtube-player" width="100%" height="315" src="https://www.youtube.com/embed/DXPD5e-GJco" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         
-        <!-- YouTube Button with Purple SVG -->
             <div style="text-align: center; margin-top: 20px;">
                 <a href="https://www.youtube.com/watch?v=DXPD5e-GJco" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 30px; background: rgba(180, 100, 255, 0.2); border: 1px solid rgba(180, 100, 255, 0.4); border-radius: 50px; color: white; text-decoration: none; font-size: 16px; transition: all 0.3s;">
                     <svg width="20" height="20" viewBox="0 0 24 24" style="fill: currentColor;">
@@ -636,63 +738,181 @@
             </div>
         </div>
     </section>
+
     <!-- Floating particles script -->
     <script>
-                (function() {
-                    const container = document.body;
-                    const particleCount = 40;
+        (function() {
+            const container = document.body;
+            const particleCount = 40;
             
-                    for (let i = 0; i < particleCount; i++) {
-                        const particle = document.createElement('div');
-                        particle.className = 'music-particle';
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'music-particle';
                 
-                        const size = 2 + Math.random() * 6;
-                        particle.style.width = size + 'px';
-                        particle.style.height = size + 'px';
+                const size = 2 + Math.random() * 6;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
                 
-                        particle.style.left = Math.random() * 100 + '%';
-                        particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
                 
-                        particle.style.animationDelay = Math.random() * 5 + 's';
-                        particle.style.animationDuration = 5 + Math.random() * 8 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = 5 + Math.random() * 8 + 's';
                 
-                        container.appendChild(particle);
-                    }
-                })();
-            </script>
-            <script>
-            // Smooth background transition between sections
-            const sections = document.querySelectorAll('.project-section');
-            const colors = [
-                '#120e22', // moonlight - darker
-                '#090918', // MINE - shifted further in shade
-                '#1a0f2a', // Trace the Line - neon pinkish-purple
-                '#040310'  // Dynasties - balanced
-            ];
-    
-            window.addEventListener('scroll', function() {
-                const scrollY = window.scrollY;
-                const windowHeight = window.innerHeight;
-        
-                // Find which section is most visible
-                let maxVisibility = 0;
-                let targetColor = colors[0];
-        
-                sections.forEach((section, index) => {
-                    const rect = section.getBoundingClientRect();
-                    const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-                    const visibility = Math.max(0, visibleHeight / windowHeight);
+                container.appendChild(particle);
+            }
+        })();
+    </script>
+
+    <!-- Floating particles script -->
+    <script>
+        (function() {
+            const container = document.body;
+            const particleCount = 40;
             
-                    if (visibility > maxVisibility) {
-                        maxVisibility = visibility;
-                        targetColor = colors[index];
-                    }
-                });
-        
-                // Smooth transition - dark and moody
-                document.body.style.backgroundColor = targetColor;
-                document.body.style.transition = 'background-color 0.8s ease';
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'music-particle';
+                
+                const size = 2 + Math.random() * 6;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = 5 + Math.random() * 8 + 's';
+                
+                container.appendChild(particle);
+            }
+        })();
+    </script>
+
+    <script>
+        // Smooth background transition between sections
+        const sections = document.querySelectorAll('.project-section');
+        const colors = [
+            '#0a0a2a', // moonlight - slightly lighter blue-black
+            '#180810', // MINE - very dark red-black (unchanged)
+            '#180818', // Trace the Line - very dark pink-black (unchanged)
+            '#0a0a20'  // Dynasties - slightly lighter purple-black
+        ];
+
+        const edgeColors = [
+            { r: 90, g: 130, b: 220, opacity: 0.12 },  // moonlight - soft blue haze
+            { r: 180, g: 60, b: 70, opacity: 0.15 },   // MINE - subtle crimson mist
+            { r: 230, g: 60, b: 160, opacity: 0.18 },  // Trace the Line - gentle pink aura
+            { r: 140, g: 90, b: 210, opacity: 0.12 }   // Dynasties - soft purple veil
+        ];
+
+        // Convert hex to RGB
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : { r: 10, g: 10, b: 26 };
+        }
+
+        // Convert RGB to hex
+        function rgbToHex(r, g, b) {
+            return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
+
+        // Function to update edge glow colors
+        function updateEdgeGlow(color) {
+            const oldStyle = document.getElementById('edge-glow-style');
+            if (oldStyle) oldStyle.remove();
+            
+            const style = document.createElement('style');
+            style.id = 'edge-glow-style';
+            style.textContent = `
+                .edge-glow::before {
+                    background: linear-gradient(180deg, 
+                        rgba(${color.r}, ${color.g}, ${color.b}, ${color.opacity}) 0%,
+                        transparent 100%
+                    ) !important;
+                }
+                .edge-glow::after {
+                    background: linear-gradient(0deg, 
+                        rgba(${color.r}, ${color.g}, ${color.b}, ${color.opacity}) 0%,
+                        transparent 100%
+                    ) !important;
+                }
+                .left-edge {
+                    background: linear-gradient(90deg, 
+                        rgba(${color.r}, ${color.g}, ${color.b}, ${color.opacity * 0.8}) 0%,
+                        transparent 100%
+                    ) !important;
+                }
+                .right-edge {
+                    background: linear-gradient(270deg, 
+                        rgba(${color.r}, ${color.g}, ${color.b}, ${color.opacity * 0.8}) 0%,
+                        transparent 100%
+                    ) !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            
+            // Calculate weights for each section based on visibility
+            let totalWeight = 0;
+            const weights = [];
+            
+            sections.forEach((section) => {
+                const rect = section.getBoundingClientRect();
+                const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+                const visibility = Math.max(0, visibleHeight / windowHeight);
+                weights.push(visibility);
+                totalWeight += visibility;
             });
-        </script>
+            
+            if (totalWeight === 0) return;
+            
+            // Normalize weights
+            const normalizedWeights = weights.map(w => w / totalWeight);
+            
+            // Blend background colors
+            let blendedR = 0, blendedG = 0, blendedB = 0;
+            
+            for (let i = 0; i < sections.length; i++) {
+                const rgb = hexToRgb(colors[i]);
+                blendedR += rgb.r * normalizedWeights[i];
+                blendedG += rgb.g * normalizedWeights[i];
+                blendedB += rgb.b * normalizedWeights[i];
+            }
+            
+            // Apply blended background color
+            document.body.style.backgroundColor = rgbToHex(
+                Math.round(blendedR), 
+                Math.round(blendedG), 
+                Math.round(blendedB)
+            );
+            document.body.style.transition = 'background-color 0.1s ease';
+            
+            // Blend edge colors
+            let blendedEdge = { r: 0, g: 0, b: 0, opacity: 0 };
+            
+            for (let i = 0; i < sections.length; i++) {
+                blendedEdge.r += edgeColors[i].r * normalizedWeights[i];
+                blendedEdge.g += edgeColors[i].g * normalizedWeights[i];
+                blendedEdge.b += edgeColors[i].b * normalizedWeights[i];
+                blendedEdge.opacity += edgeColors[i].opacity * normalizedWeights[i];
+            }
+            
+            // Update edge glow with blended color
+            updateEdgeGlow(blendedEdge);
+        });
+
+        // Initial call to set colors on page load
+        setTimeout(() => {
+            updateEdgeGlow(edgeColors[0]);
+        }, 100);
+    </script>
 </body>
 </html>
