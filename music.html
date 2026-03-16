@@ -25,14 +25,20 @@
         
         body {
             font-family: 'Arial', sans-serif;
-            background: #0a0a1a;
+            background: #030308;
             transition: background-color 0.8s ease;
             color: white;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Edge Lighting Effects */
+        /* Edge glow - pure light, no lines */
+        :root {
+            --glow-r: 100;
+            --glow-g: 150;
+            --glow-b: 255;
+        }
+
         .edge-glow {
             position: fixed;
             top: 0;
@@ -40,76 +46,20 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 5;
+            z-index: 10;
+            box-shadow: 
+                inset 0 100px 80px -40px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.25),
+                inset 0 -100px 80px -40px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.25),
+                inset 100px 0 80px -40px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.15),
+                inset -100px 0 80px -40px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.15);
         }
 
-        /* Top edge glow */
-        .edge-glow::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(180deg, 
-                rgba(100, 150, 255, 0.25) 0%,
-                transparent 100%
-            );
-            animation: edgePulse 4s infinite alternate;
-        }
-
-        /* Bottom edge glow */
-        .edge-glow::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(0deg, 
-                rgba(100, 150, 255, 0.25) 0%,
-                transparent 100%
-            );
-            animation: edgePulse 4s infinite alternate reverse;
-        }
-
-        /* Left edge glow */
-        .left-edge {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100px;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                rgba(100, 150, 255, 0.2) 0%,
-                transparent 100%
-            );
-            pointer-events: none;
-            z-index: 5;
-            animation: edgePulse 5s infinite alternate;
-        }
-
-        /* Right edge glow */
-        .right-edge {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100%;
-            background: linear-gradient(270deg, 
-                rgba(100, 150, 255, 0.2) 0%,
-                transparent 100%
-            );
-            pointer-events: none;
-            z-index: 5;
-            animation: edgePulse 5s infinite alternate reverse;
-        }
-
-        @keyframes edgePulse {
-            0% { opacity: 0.2; }
-            100% { opacity: 0.6; }
-        }
-
+        /* Remove all those pseudo-elements and extra divs — DELETE these:
+        .edge-glow::before
+        .edge-glow::after
+        .left-edge
+        .right-edge
+        */
         /* Section-specific glow colors - applied via JavaScript */
         .moonlight-glow .edge-glow::before,
         .moonlight-glow .edge-glow::after,
@@ -313,7 +263,7 @@
             padding: 40px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             position: relative;
-            z-index: 10;
+            z-index: 2;
         }
         /* Container glow transitions */
         .project-container {
@@ -344,7 +294,36 @@
             text-align: center;
             margin-bottom: 30px;
         }
-        
+        /* Simple container glow with very subtle pulse */
+        .project-container {
+            transition: box-shadow 0.3s ease;
+            animation: subtleContainerGlow 5s ease-in-out infinite;
+        }
+
+        /* More noticeable container glow animation */
+        @keyframes subtleContainerGlow {
+            0% { 
+                box-shadow: 0 20px 40px rgba(180, 100, 255, 0.15),
+                            0 0 30px rgba(180, 100, 255, 0.1);
+            }
+            30% { 
+                box-shadow: 0 25px 50px rgba(180, 100, 255, 0.35),
+                            0 0 50px rgba(180, 100, 255, 0.2);
+            }
+            60% { 
+                box-shadow: 0 22px 45px rgba(180, 100, 255, 0.3),
+                            0 0 40px rgba(180, 100, 255, 0.15);
+            }
+            100% { 
+                box-shadow: 0 20px 40px rgba(180, 100, 255, 0.15),
+                            0 0 30px rgba(180, 100, 255, 0.1);
+            }
+        }
+
+        .project-container {
+            transition: box-shadow 0.3s ease;
+            animation: subtleContainerGlow 6s ease-in-out infinite;
+        }
         .project-header h2 {
             font-size: 48px;
             font-family: 'Syne', sans-serif;
@@ -793,16 +772,16 @@
         // Smooth background transition between sections
         const sections = document.querySelectorAll('.project-section');
         const colors = [
-            '#0a0a2a', // moonlight - slightly lighter blue-black
-            '#180810', // MINE - very dark red-black (unchanged)
-            '#180818', // Trace the Line - very dark pink-black (unchanged)
-            '#0a0a20'  // Dynasties - slightly lighter purple-black
+            '#050514', // moonlight - darker blue-black
+            '#10050c', // MINE - darker red-black  
+            '#1a0518', // Trace the Line - hot pink-black (more vibrant)
+            '#050510'  // Dynasties - darker purple-black
         ];
 
         const edgeColors = [
             { r: 90, g: 130, b: 220, opacity: 0.12 },  // moonlight - soft blue haze
             { r: 180, g: 60, b: 70, opacity: 0.15 },   // MINE - subtle crimson mist
-            { r: 230, g: 60, b: 160, opacity: 0.18 },  // Trace the Line - gentle pink aura
+            { r: 255, g: 40, b: 150, opacity: 0.2 },   // Trace the Line - HOT PINK 🌸
             { r: 140, g: 90, b: 210, opacity: 0.12 }   // Dynasties - soft purple veil
         ];
 
@@ -821,40 +800,11 @@
             return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
         }
 
-        // Function to update edge glow colors
+        // Function to update edge glow colors using CSS variables
         function updateEdgeGlow(color) {
-            const oldStyle = document.getElementById('edge-glow-style');
-            if (oldStyle) oldStyle.remove();
-            
-            const style = document.createElement('style');
-            style.id = 'edge-glow-style';
-            style.textContent = `
-                .edge-glow::before {
-                    background: linear-gradient(180deg, 
-                        rgba(${color.r}, ${color.g}, ${color.b}, ${color.opacity}) 0%,
-                        transparent 100%
-                    ) !important;
-                }
-                .edge-glow::after {
-                    background: linear-gradient(0deg, 
-                        rgba(${color.r}, ${color.g}, ${color.b}, ${color.opacity}) 0%,
-                        transparent 100%
-                    ) !important;
-                }
-                .left-edge {
-                    background: linear-gradient(90deg, 
-                        rgba(${color.r}, ${color.g}, ${color.b}, ${color.opacity * 0.8}) 0%,
-                        transparent 100%
-                    ) !important;
-                }
-                .right-edge {
-                    background: linear-gradient(270deg, 
-                        rgba(${color.r}, ${color.g}, ${color.b}, ${color.opacity * 0.8}) 0%,
-                        transparent 100%
-                    ) !important;
-                }
-            `;
-            document.head.appendChild(style);
+            document.documentElement.style.setProperty('--glow-r', color.r);
+            document.documentElement.style.setProperty('--glow-g', color.g);
+            document.documentElement.style.setProperty('--glow-b', color.b);
         }
 
         window.addEventListener('scroll', function() {
