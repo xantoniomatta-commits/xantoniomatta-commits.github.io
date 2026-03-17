@@ -54,12 +54,6 @@
                 inset -100px 0 80px -40px rgba(var(--glow-r), var(--glow-g), var(--glow-b), 0.15);
         }
 
-        /* Remove all those pseudo-elements and extra divs — DELETE these:
-        .edge-glow::before
-        .edge-glow::after
-        .left-edge
-        .right-edge
-        */
         /* Section-specific glow colors - applied via JavaScript */
         .moonlight-glow .edge-glow::before,
         .moonlight-glow .edge-glow::after,
@@ -265,10 +259,6 @@
             position: relative;
             z-index: 2;
         }
-        /* Container glow transitions */
-        .project-container {
-            transition: box-shadow 0.5s ease, border-color 0.5s ease;
-        }
 
         /* Section-specific container glows */
         .moonlight-glow .project-container {
@@ -293,12 +283,7 @@
         .project-header {
             text-align: center;
             margin-bottom: 30px;
-        }
-        /* Simple container glow with very subtle pulse */
-        .project-container {
-            transition: box-shadow 0.3s ease;
-            animation: subtleContainerGlow 5s ease-in-out infinite;
-        }
+        }`
 
         /* More noticeable container glow animation */
         @keyframes subtleContainerGlow {
@@ -500,6 +485,7 @@
                 font-size: 16px;
             }
         }
+
     </style>
 </head>
 <body>
@@ -718,30 +704,6 @@
         </div>
     </section>
 
-    <!-- Floating particles script -->
-    <script>
-        (function() {
-            const container = document.body;
-            const particleCount = 40;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'music-particle';
-                
-                const size = 2 + Math.random() * 6;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particle.style.animationDuration = 5 + Math.random() * 8 + 's';
-                
-                container.appendChild(particle);
-            }
-        })();
-    </script>
 
     <!-- Floating particles script -->
     <script>
