@@ -775,6 +775,47 @@
                 justify-content: center;
             }
             
+            /* Desktop vs Mobile display for Spline */
+            @media (min-width: 769px) {
+                .desktop-spline {
+                    display: block;
+                }
+                .mobile-spline {
+                    display: none;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .desktop-spline {
+                    display: none;
+                }
+                .mobile-spline {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                }
+                
+                .mobile-spline img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+                
+                .mobile-spline-overlay {
+                    position: absolute;
+                    bottom: 20px;
+                    right: 20px;
+                    background: rgba(0,0,0,0.5);
+                    backdrop-filter: blur(5px);
+                    padding: 8px 16px;
+                    border-radius: 30px;
+                    font-size: 12px;
+                    color: rgba(255,255,255,0.8);
+                    border: 1px solid rgba(255,255,255,0.2);
+                }
+            }
             /* Make featured grid single column */
             .featured-grid {
                 grid-template-columns: 1fr !important;
@@ -917,13 +958,24 @@
         </div>
     </div>
 
-    <!-- SPLINE SECTION -->
+    <!-- SPLINE SECTION - Desktop vs Mobile -->
     <div class="spline-section">
+        <!-- Desktop: 3D Spline -->
         <spline-viewer 
             id="mainSpline"
             url="https://prod.spline.design/y81KrpgVPCsnUVg8/scene.splinecode"
-            loading-anim>
+            loading-anim
+            class="desktop-spline">
         </spline-viewer>
+        
+        <!-- Mobile: Static image -->
+        <div class="mobile-spline">
+            <img src="spline-mobile.png" alt="3D Scene">
+            <div class="mobile-spline-overlay">
+                <span>✨ 3D Scene (simplified for mobile)</span>
+            </div>
+        </div>
+        
         <div class="horizon-top"></div>
     </div>
 
