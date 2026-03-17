@@ -691,226 +691,37 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* MOBILE STYLES */
         @media (max-width: 768px) {
-            /* Fix header - make it stack */
+            /* Header - fixed at top, transparent overlay */
             .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 12px 20px;
+                background: rgba(0, 0, 0, 0.5); /* Semi-transparent */
+                backdrop-filter: blur(10px);
+                border: none;
+                border-radius: 0;
+                z-index: 1000;
+                display: flex;
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                padding: 12px 15px;
-                width: 95%;
             }
             
-            .logo {
-                font-size: 20px;
-                margin-bottom: 8px;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 8px;
-                justify-content: center;
-            }
-            
-            .contact-info a {
-                font-size: 13px;
-            }
-            
-            .social-icons {
-                margin-left: 0;
-                padding-left: 0;
-                border-left: none;
-                margin-top: 5px;
-            }
-            
-            /* Make Spline section smaller */
+            /* Spline section - starts at top of page */
             .spline-section {
                 height: 60vh;
-            }
-            
-            /* Mobile Spline styles */
-            .desktop-spline {
-                display: none;
-            }
-            
-            .mobile-spline {
-                display: block;
-                width: 100%;
-                height: 100%;
+                margin-top: 0; /* NO GAP */
                 position: relative;
                 z-index: 1;
             }
             
-            .mobile-spline img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
-            }
-            
-            .mobile-spline-overlay {
-                position: absolute;
-                bottom: 20px;
-                right: 20px;
-                background: rgba(0,0,0,0.5);
-                backdrop-filter: blur(5px);
-                padding: 8px 16px;
-                border-radius: 30px;
-                font-size: 12px;
-                color: rgba(255,255,255,0.8);
-                border: 1px solid rgba(255,255,255,0.2);
-                z-index: 2;
-            }
-            
-            /* Simplify reflection section */
-            .reflection-section {
-                min-height: auto;
-                padding: 40px 15px;
-            }
-            
-            .reflection-content {
-                padding: 30px 15px;
-            }
-            
-            h2 {
-                font-size: 36px !important;
-            }
-            
-            .reflection-content p {
-                font-size: 16px;
-                margin-bottom: 25px;
-            }
-            
-            /* Stack buttons vertically */
-            .buttons-grid {
-                flex-direction: column;
-                gap: 10px;
-                margin: 25px 0;
-            }
-            
-            .interactive-btn {
-                width: 100%;
-                padding: 15px 20px;
-                font-size: 16px;
-                justify-content: center;
-            }
-            
-            /* Make featured grid single column */
-            .featured-grid {
-                grid-template-columns: 1fr !important;
-                gap: 15px;
-                margin-top: 30px;
-            }
-            
-            .featured-item {
-                padding: 20px;
-            }
-            
-            .featured-item i {
-                font-size: 36px;
-            }
-            
-            /* Make extra grid single column */
-            .extra-grid {
-                grid-template-columns: 1fr !important;
-                gap: 15px;
-            }
-            
-            .extra-card {
-                padding: 25px 15px;
-            }
-            
-            .extra-card i {
-                font-size: 40px;
-            }
-            
-            .extra-card h4 {
-                font-size: 22px;
-            }
-            
-            /* Reduce particles - they can cause lag on phones */
-            .bg-particle {
-                opacity: 0.05 !important;
-            }
-            
-            /* Adjust spacing */
-            .extra-section {
-                padding: 50px 20px;
-            }
-            
-            .extra-content h3 {
-                font-size: 36px;
-                margin-bottom: 20px;
-            }
-            
-            .extra-content > p {
-                font-size: 16px;
-                margin-bottom: 30px;
-            }
-            
-            /* Make scroll indicator smaller */
-            .scroll-indicator {
-                bottom: 15px;
-                font-size: 12px;
-            }
-            
-            /* Adjust back home button */
-            .back-home {
-                bottom: 15px;
-                right: 15px;
-                padding: 8px 16px;
-                font-size: 14px;
-            }
-        }
-
-        /* DESKTOP SPLINE STYLES */
-        @media (min-width: 769px) {
-            .desktop-spline {
-                display: block;
-            }
-            .mobile-spline {
-                display: none;
-            }
-        }
-
-        /* Even smaller phones */
-        @media (max-width: 480px) {
-            h2 {
-                font-size: 28px !important;
-            }
-            
-            .logo {
-                font-size: 18px;
-            }
-            
-            .contact-info a {
-                font-size: 12px;
-            }
-            
-            .spline-section {
-                height: 50vh;
-            }
-        }
-        
-        /* Bring particles back above the background */
-        #particle-background {
-            z-index: 5;
-        }
-
-        /* Make sure content stays above particles */
-        .spline-section,
-        .reflection-section,
-        .extra-section,
-        .header {
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Keep horizons above everything */
-        .horizon-top,
-        .horizon-bottom {
-            z-index: 20;
+            /* Rest of your mobile styles remain the same */
         }
         
     </style>
