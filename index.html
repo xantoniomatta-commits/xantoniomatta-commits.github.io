@@ -766,41 +766,33 @@
                 .desktop-spline {
                     display: block;
                 }
-                .mobile-spline {
-                    display: none;
-                }
+            .mobile-spline {
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: relative;
+                z-index: 1; /* Lower than header */
             }
 
-            @media (max-width: 768px) {
-                .desktop-spline {
-                    display: none;
-                }
-                .mobile-spline {
-                    display: block;
-                    width: 100%;
-                    height: 100%;
-                    position: relative;
-                }
-                
-                .mobile-spline img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    object-position: center;
-                }
-                
-                .mobile-spline-overlay {
-                    position: absolute;
-                    bottom: 20px;
-                    right: 20px;
-                    background: rgba(0,0,0,0.5);
-                    backdrop-filter: blur(5px);
-                    padding: 8px 16px;
-                    border-radius: 30px;
-                    font-size: 12px;
-                    color: rgba(255,255,255,0.8);
-                    border: 1px solid rgba(255,255,255,0.2);
-                }
+            .mobile-spline img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .mobile-spline-overlay {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                background: rgba(0,0,0,0.5);
+                backdrop-filter: blur(5px);
+                padding: 8px 16px;
+                border-radius: 30px;
+                font-size: 12px;
+                color: rgba(255,255,255,0.8);
+                border: 1px solid rgba(255,255,255,0.2);
+                z-index: 2; /* Above the image but below header */
             }
             /* Make featured grid single column */
             .featured-grid {
@@ -833,11 +825,6 @@
             
             .extra-card h4 {
                 font-size: 22px;
-            }
-            
-            /* Reduce particles - they can cause lag on phones */
-            .bg-particle {
-                opacity: 0.05 !important;
             }
             
             /* Adjust spacing */
@@ -911,6 +898,8 @@
         .horizon-bottom {
             z-index: 20;
         }
+
+        
     </style>
     
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.69/build/spline-viewer.js"></script>
