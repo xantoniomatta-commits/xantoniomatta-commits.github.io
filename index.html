@@ -704,6 +704,167 @@
             margin: 0 auto;
             font-family: 'Space Grotesk', sans-serif;
         }
+
+                @media (max-width: 768px) {
+            /* Fix header - make it stack */
+            .header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 12px 15px;
+                width: 95%;
+            }
+            
+            .logo {
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 8px;
+                justify-content: center;
+            }
+            
+            .contact-info a {
+                font-size: 13px;
+            }
+            
+            .social-icons {
+                margin-left: 0;
+                padding-left: 0;
+                border-left: none;
+                margin-top: 5px;
+            }
+            
+            /* Make Spline section smaller */
+            .spline-section {
+                height: 60vh;
+            }
+            
+            /* Simplify reflection section */
+            .reflection-section {
+                min-height: auto;
+                padding: 40px 15px;
+            }
+            
+            .reflection-content {
+                padding: 30px 15px;
+            }
+            
+            h2 {
+                font-size: 36px !important;
+            }
+            
+            .reflection-content p {
+                font-size: 16px;
+                margin-bottom: 25px;
+            }
+            
+            /* Stack buttons vertically */
+            .buttons-grid {
+                flex-direction: column;
+                gap: 10px;
+                margin: 25px 0;
+            }
+            
+            .interactive-btn {
+                width: 100%;
+                padding: 15px 20px;
+                font-size: 16px;
+                justify-content: center;
+            }
+            
+            /* Make featured grid single column */
+            .featured-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px;
+                margin-top: 30px;
+            }
+            
+            .featured-item {
+                padding: 20px;
+            }
+            
+            .featured-item i {
+                font-size: 36px;
+            }
+            
+            /* Make extra grid single column */
+            .extra-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px;
+            }
+            
+            .extra-card {
+                padding: 25px 15px;
+            }
+            
+            .extra-card i {
+                font-size: 40px;
+            }
+            
+            .extra-card h4 {
+                font-size: 22px;
+            }
+            
+            /* Reduce particles - they can cause lag on phones */
+            .bg-particle {
+                opacity: 0.05 !important;
+            }
+            
+            /* Adjust spacing */
+            .extra-section {
+                padding: 50px 20px;
+            }
+            
+            .extra-content h3 {
+                font-size: 36px;
+                margin-bottom: 20px;
+            }
+            
+            .extra-content > p {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            
+            /* Make scroll indicator smaller */
+            .scroll-indicator {
+                bottom: 15px;
+                font-size: 12px;
+            }
+            
+            /* Adjust back home button */
+            .back-home {
+                bottom: 15px;
+                right: 15px;
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+        /* Even smaller phones */
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 28px !important;
+            }
+            
+            .logo {
+                font-size: 18px;
+            }
+            
+            .contact-info a {
+                font-size: 12px;
+            }
+            
+            .spline-section {
+                height: 50vh;
+            }
+            
+            .project-container {
+                padding: 20px;
+            }
+        }
     </style>
     
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.69/build/spline-viewer.js"></script>
